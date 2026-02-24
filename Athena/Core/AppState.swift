@@ -36,8 +36,15 @@ class AppState: ObservableObject {
     // MARK: - 初始化
 
     func initialize() async {
-        // 載入本地 LLM
-        try? llm.load()
+        // 確認模型檔案存在才載入
+        let modelPath = LLMWrapper.modelURL.path
+        if FileManager.default.fileExists(atPath: modelPath) {
+            print("✅ 模型檔案確認存在，開始載入")
+            // llm.load() 是同步阻塞，必須丟到背景執行緒，否則會卡住 UI
+            try? await self.llm.load()
+        } else {
+            print("⚠️ 模型檔案不存在，跳過載入：\(modelPath)")
+        }
 
         // 檢查後台狀態
         let isOnline = await apiClient.healthCheck()
@@ -56,17 +63,16 @@ class AppState: ObservableObject {
         guard !input.trimmingCharacters(in: .whitespaces).isEmpty else { return }
 
         chatHistory.append(ChatBubble(role: "user", content: input))
-        withAnimation { uiState.isLoading = true }
+
+        // 立刻同步切換到 loading（不等 Task 排程）
+        uiState.isLoading = true
+        uiState.widget = .empty
 
         if serverStatus == .online {
-            // 後台模式：大 LLM 判斷意圖
             await handleWithServer(input)
         } else {
-            // 離線模式：本地小 LLM
             await handleLocally(input)
         }
-
-        withAnimation { uiState.isLoading = false }
     }
 
     // MARK: - 後台模式
@@ -78,10 +84,12 @@ class AppState: ObservableObject {
 
             print("🎯 後台意圖：\(intent.tool)")
 
-            // 根據 intent 更新 UI
             let widget = await resolveWidget(intent: intent, data: response.data)
 
+            // widget 和 isLoading 在同一個 withAnimation 裡一起更新
+            // 確保畫面切換是原子操作，不會有 loading 殘留
             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                uiState.isLoading = false
                 uiState.widget = widget
                 uiState.title  = titleFor(tool: intent.tool, params: intent.params)
             }
@@ -92,6 +100,7 @@ class AppState: ObservableObject {
 
         } catch {
             print("⚠️ 後台失敗，切換本地模式：\(error)")
+            withAnimation { uiState.isLoading = false }
             serverStatus = .offline
             await handleLocally(input)
         }
@@ -103,6 +112,7 @@ class AppState: ObservableObject {
         if let quick = intentEngine.quickMatch(input: input) {
             let widget = await toolExecutor.execute(quick)
             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                uiState.isLoading = false
                 uiState.widget = widget
                 uiState.title  = titleFor(tool: quick.tool.rawValue, params: quick.params)
             }
@@ -110,11 +120,13 @@ class AppState: ObservableObject {
             let call = await intentEngine.llmMatch(input: input, llm: llm)
             let widget = await toolExecutor.execute(call)
             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                uiState.isLoading = false
                 uiState.widget = widget
                 uiState.title  = titleFor(tool: call.tool.rawValue, params: call.params)
             }
         } else {
             withAnimation {
+                uiState.isLoading = false
                 uiState.widget = .error("後台離線且本地模型未載入")
             }
         }

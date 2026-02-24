@@ -52,6 +52,12 @@ struct ContentView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
+        // 點空白收鍵盤
+        .onTapGesture {
+            inputFocused = false
+        }
+        // 滑動收鍵盤
+        .scrollDismissesKeyboard(.interactively)
     }
 }
 
@@ -179,7 +185,9 @@ struct EmptyHomeView: View {
                 // 建議卡片
                 VStack(spacing: 12) {
                     ForEach(suggestions, id: \.1) { icon, text, color in
-                        SuggestionRow(icon: icon, text: text, color: color)
+                        SuggestionRow(icon: icon, text: text, color: color) {
+                            Task { await appState.handleInput(text) }
+                        }
                     }
                 }
                 .padding(.horizontal, 16)
@@ -194,8 +202,10 @@ struct SuggestionRow: View {
     let icon: String
     let text: String
     let color: Color
+    let onTap: () -> Void
 
     var body: some View {
+        Button(action: onTap) {
         HStack(spacing: 16) {
             // Icon pill
             Image(systemName: icon)
@@ -224,6 +234,8 @@ struct SuggestionRow: View {
             RoundedRectangle(cornerRadius: DS.cardRadius)
                 .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
         )
+        }
+        .buttonStyle(.plain)
     }
 }
 

@@ -1,0 +1,9 @@
+//
+//  app.xcconfig
+//  Athena
+//
+//  Created by Lin, Hung Yu on 2/23/26.
+//
+
+SLASH = /
+ATHENA_BASE_URL = http:$(SLASH)$(SLASH)134.199.203.161:3000

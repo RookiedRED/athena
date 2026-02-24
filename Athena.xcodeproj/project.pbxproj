@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		613541502F4D4BC0008E3E30 /* app.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6135414F2F4D4BBC008E3E30 /* app.xcconfig */; };
 		61E96F172F49671100A0E997 /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = 61E96F162F49671100A0E997 /* LLM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6135414F2F4D4BBC008E3E30 /* app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = app.xcconfig; sourceTree = "<group>"; };
 		61E96EED2F4959A800A0E997 /* Athena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Athena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +54,7 @@
 			children = (
 				61E96EEF2F4959A800A0E997 /* Athena */,
 				61E96EEE2F4959A800A0E997 /* Products */,
+				6135414F2F4D4BBC008E3E30 /* app.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				613541502F4D4BC0008E3E30 /* app.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +154,7 @@
 /* Begin XCBuildConfiguration section */
 		61E96EF62F4959AA00A0E997 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6135414F2F4D4BBC008E3E30 /* app.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -214,6 +219,7 @@
 		};
 		61E96EF72F4959AA00A0E997 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6135414F2F4D4BBC008E3E30 /* app.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -271,6 +277,7 @@
 		};
 		61E96EF92F4959AA00A0E997 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6135414F2F4D4BBC008E3E30 /* app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -280,6 +287,7 @@
 				DEVELOPMENT_TEAM = CX82UXAT2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Athena/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -305,6 +313,7 @@
 		};
 		61E96EFA2F4959AA00A0E997 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6135414F2F4D4BBC008E3E30 /* app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -314,6 +323,7 @@
 				DEVELOPMENT_TEAM = CX82UXAT2U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Athena/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

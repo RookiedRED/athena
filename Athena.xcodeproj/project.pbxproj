@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		61E96F172F49671100A0E997 /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = 61E96F162F49671100A0E997 /* LLM */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		61E96EED2F4959A800A0E997 /* Athena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Athena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		61E96FDB2F4D434E00A0E997 /* Exceptions for "Athena" folder in "Athena" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 61E96EEC2F4959A800A0E997 /* Athena */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		61E96EEF2F4959A800A0E997 /* Athena */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				61E96FDB2F4D434E00A0E997 /* Exceptions for "Athena" folder in "Athena" target */,
+			);
 			path = Athena;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E96F172F49671100A0E997 /* LLM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = Athena;
 			packageProductDependencies = (
+				61E96F162F49671100A0E997 /* LLM */,
 			);
 			productName = Athena;
 			productReference = 61E96EED2F4959A800A0E997 /* Athena.app */;
@@ -82,6 +101,7 @@
 				TargetAttributes = {
 					61E96EEC2F4959A800A0E997 = {
 						CreatedOnToolsVersion = 26.2;
+						LastSwiftMigration = 2620;
 					};
 				};
 			};
@@ -94,6 +114,9 @@
 			);
 			mainGroup = 61E96EE42F4959A800A0E997;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				61E96F152F49671100A0E997 /* XCRemoteSwiftPackageReference "LLM" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 61E96EEE2F4959A800A0E997 /* Products */;
 			projectDirPath = "";
@@ -251,6 +274,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CX82UXAT2U;
@@ -272,6 +296,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -283,6 +308,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CX82UXAT2U;
@@ -332,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		61E96F152F49671100A0E997 /* XCRemoteSwiftPackageReference "LLM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eastriverlee/LLM.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		61E96F162F49671100A0E997 /* LLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61E96F152F49671100A0E997 /* XCRemoteSwiftPackageReference "LLM" */;
+			productName = LLM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 61E96EE52F4959A800A0E997 /* Project object */;
 }
